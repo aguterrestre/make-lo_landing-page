@@ -40,6 +40,7 @@ class LandingPage(TemplateView):
         return data
 
     def post(self, request, *args, **kwargs):
+        """ Usamos método POST para enviar mail de contacto """
         data = {}
         try:
             name = request.POST.get('name')
@@ -50,7 +51,3 @@ class LandingPage(TemplateView):
         except Exception as e:
             data['error'] = 'Ha ocurrido un inconveniente al intentar enviar la solicitud.\n'+str(e)
         return JsonResponse(data, safe=False)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
